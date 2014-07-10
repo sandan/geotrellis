@@ -15,7 +15,7 @@
  */
 
 object Version {
-  val geotrellis  = "0.10.0-SNAPSHOT"
+  val geotrellis  = "0.10.0-M1"
   val scala       = "2.10.3"
   val geotools    = "11.0"
   val akka        = "2.2.4"
