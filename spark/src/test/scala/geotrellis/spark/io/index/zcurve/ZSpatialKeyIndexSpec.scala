@@ -5,7 +5,7 @@ import org.scalatest._
 class ZSpatialKeyIndexSpec extends FunSpec with Matchers {
   describe("ZSpatialKeyIndex test") {
     it("generates an index from a SpatialKey"){
-      
+     val zsk = new ZSpatialKeyIndex()
 
     }
 
