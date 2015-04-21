@@ -365,7 +365,7 @@ object GeotrellisBuild extends Build {
       fork := true,
       parallelExecution in Test := false,
       javaOptions ++= List(
-        "-Xmx8G",
+        "-Xmx3G",
         s"-Djava.library.path=${Environment.javaGdalDir}",
         "-Dsun.io.serialization.extendedDebugInfo=true"
       ),
