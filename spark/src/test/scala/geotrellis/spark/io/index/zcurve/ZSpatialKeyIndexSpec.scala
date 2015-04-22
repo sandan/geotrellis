@@ -6,7 +6,7 @@ import geotrellis.spark.SpatialKey
 
 class ZSpatialKeyIndexSpec extends FunSpec with Matchers {
 
-  val UpperBound = 4
+  val UpperBound = 64
 
   describe("ZSpatialKeyIndex test") {
     it("generates an index from a SpatialKey"){
@@ -22,17 +22,26 @@ class ZSpatialKeyIndexSpec extends FunSpec with Matchers {
 
           var idx = zsk.toIndex(i,j)
           var x: Option[Long] = ts.find(y => y == idx)
-          if (x.isEmpty){
-            ts = ts + idx //add element exactly once
-          }else{
-            //throw error
-            println("=============ERROR============")
-          }
-       j+=1
+
+          x.isEmpty should be (true) //add element exactly once
+          ts = ts + idx 
+
+          j+=1
       }
       i+=1
      }
+
+     //check size
      ts.size should be (UpperBound * UpperBound)
+
+     //check for consecutivity
+     val itr: Iterator[Long] = ts.iterator
+     var s = itr.next
+     while(itr.hasNext){
+      var t = itr.next 
+      t should be (s+1)
+      s = t
+     }
     }
 
     it("generates a Seq[(Long, Long)] from a keyRange (SpatialKey,SpatialKey)"){
